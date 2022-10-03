@@ -1,9 +1,10 @@
 package special
 
 import (
-	"alap/jio"
-	"alap/templates"
 	"fmt"
+
+	"github.com/jabbalaci/alap/jio"
+	"github.com/jabbalaci/alap/templates"
 )
 
 func CreateNuOn() {

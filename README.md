@@ -56,5 +56,6 @@ somewhere in the PATH.
 
 # Changelog
 
-* v0.1.1 - Support for Python's virtual environments in Nushell. Now
+* **v0.1.1** - Support for Python's virtual environments in Nushell. Now
 you can activate / deactivate a virt. env. easily in Nushell.
+* **v0.1.0** - initial version

@@ -1,13 +1,14 @@
 package main
 
 import (
-	"alap/jio"
-	"alap/special"
-	"alap/templates"
 	"fmt"
 	"os"
 	"sort"
 	"strings"
+
+	"github.com/jabbalaci/alap/jio"
+	"github.com/jabbalaci/alap/special"
+	"github.com/jabbalaci/alap/templates"
 )
 
 const VERSION = "0.1.1"
