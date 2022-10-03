@@ -1,6 +1,6 @@
-package main
+package templates
 
-const CTemplate = `
+const C = `
 #include <stdio.h>
 
 int main()
@@ -11,7 +11,7 @@ int main()
 }
 `
 
-const GoTemplate = `
+const Go = `
 package main
 
 import (
@@ -23,7 +23,7 @@ func main() {
 }
 `
 
-const JavaTemplate = `
+const Java = `
 public class Main
 {
     public static void main(String[] args)
@@ -33,7 +33,7 @@ public class Main
 }
 `
 
-const PythonTemplate = `
+const Python = `
 #!/usr/bin/env python3
 
 def main():
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     main()
 `
 
-const RustTemplate = `
+const Rust = `
 fn main() {
     println!("rust");
 }
