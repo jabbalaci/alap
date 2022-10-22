@@ -11,7 +11,7 @@ import (
 	"github.com/jabbalaci/alap/templates"
 )
 
-const VERSION = "0.1.1"
+const VERSION = "0.1.2"
 
 type LangInfo struct {
 	fname       string
