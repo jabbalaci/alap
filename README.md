@@ -54,8 +54,14 @@ somewhere in the PATH.
                 fmt.Println("go")
         }
 
-# Changelog
+# Installation
 
-* **v0.1.1** - Support for Python's virtual environments in Nushell. Now
-you can activate / deactivate a virt. env. easily in Nushell.
-* **v0.1.0** - initial version
+Download the source code and issue the following command:
+
+        $ go build
+
+Or, you can install it directly:
+
+        $ go install github.com/jabbalaci/alap@latest
+
+In this latter case, the binary file `alap` will be in the folder `$GOPATH/bin` .
