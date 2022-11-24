@@ -11,7 +11,7 @@ import (
 	"github.com/jabbalaci/alap/templates"
 )
 
-const VERSION = "0.1.2"
+const VERSION = "0.1.3"
 
 type LangInfo struct {
 	fname       string
@@ -24,6 +24,7 @@ var langMap = map[string]LangInfo{
 	"c":    {fname: "main.c", sourceCode: templates.C, description: "\t\t- C source code"},
 	"go":   {fname: "main.go", sourceCode: templates.Go, description: "\t\t- Go source code"},
 	"java": {fname: "Main.java", sourceCode: templates.Java, description: "\t\t- Java source code"},
+	"cs":   {fname: "Program.cs", sourceCode: templates.CSharp, description: "\t\t- C# source code"},
 	"py":   {fname: "main.py", sourceCode: templates.Python, description: "\t\t- Python 3 source code"},
 	"rust": {fname: "main.rs", sourceCode: templates.Rust, description: "\t\t- Rust source code"},
 	"nuon": {fname: "on", sourceCode: "", description: "\t\t- create `on` for activating a virt. env. from Nushell"},

@@ -33,6 +33,25 @@ public class Main
 }
 `
 
+const CSharp = `
+using System;
+using static System.Console;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace Example
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            WriteLine("hello");
+        }
+    }
+}
+`
+
 const Python = `
 #!/usr/bin/env python3
 
