@@ -1,4 +1,4 @@
-package jio
+package lib
 
 import (
 	"log"

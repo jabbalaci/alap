@@ -64,6 +64,27 @@ if __name__ == "__main__":
     main()
 `
 
+const Flask = `
+#!/usr/bin/env python3
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+
+@app.route("/")
+def index():
+    context = {
+        "text": "hello"
+    }
+    return render_template("index.html", **context)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)  # listen on localhost ONLY
+#    app.run(debug=True, host='0.0.0.0')    # listen on all public IPs
+`
+
 const Rust = `
 fn main() {
     println!("rust");

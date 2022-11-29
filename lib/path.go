@@ -1,7 +1,10 @@
 // file operations (exists, isfile, etc.)
-package jio
+package lib
 
-import "os"
+import (
+	"io/fs"
+	"os"
+)
 
 // Returns true if the entry (file, directory, symbolic link, etc.) exists.
 // Returns false if the entry doesn't exist.
@@ -43,4 +46,20 @@ func IsLink(path string) bool {
 		return false
 	}
 	return fileInfo.Mode()&os.ModeSymlink == os.ModeSymlink
+}
+
+// Make a file executable for the owner. Equivalent of "chmod u+x <file>" .
+// You can also call it on Windows. It won't do anything, but you won't get an error either.
+func MakeExecutable(fname string) error {
+	stats, err := os.Stat(fname)
+	if err != nil {
+		return err
+	}
+	mode := stats.Mode()
+	executable := uint32(mode) | (1 << 6) // bit for "executable for user"
+	err = os.Chmod(fname, fs.FileMode(executable))
+	if err != nil {
+		return err
+	}
+	return nil
 }

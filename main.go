@@ -6,28 +6,30 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/jabbalaci/alap/jio"
+	"github.com/jabbalaci/alap/lib"
 	"github.com/jabbalaci/alap/special"
 	"github.com/jabbalaci/alap/templates"
 )
 
-const VERSION = "0.1.3"
+const VERSION = "0.1.4"
 
 type LangInfo struct {
 	fname       string
 	sourceCode  string
 	description string
+	executable  bool
 }
 
 // template IDs and their associated structs
 var langMap = map[string]LangInfo{
-	"c":    {fname: "main.c", sourceCode: templates.C, description: "\t\t- C source code"},
-	"go":   {fname: "main.go", sourceCode: templates.Go, description: "\t\t- Go source code"},
-	"java": {fname: "Main.java", sourceCode: templates.Java, description: "\t\t- Java source code"},
-	"cs":   {fname: "Program.cs", sourceCode: templates.CSharp, description: "\t\t- C# source code"},
-	"py":   {fname: "main.py", sourceCode: templates.Python, description: "\t\t- Python 3 source code"},
-	"rust": {fname: "main.rs", sourceCode: templates.Rust, description: "\t\t- Rust source code"},
-	"nuon": {fname: "on", sourceCode: "", description: "\t\t- create `on` for activating a virt. env. from Nushell"},
+	"c":     {fname: "main.c", sourceCode: templates.C, description: "\t\t- C source code"},
+	"go":    {fname: "main.go", sourceCode: templates.Go, description: "\t\t- Go source code"},
+	"java":  {fname: "Main.java", sourceCode: templates.Java, description: "\t\t- Java source code"},
+	"cs":    {fname: "Program.cs", sourceCode: templates.CSharp, description: "\t\t- C# source code"},
+	"py":    {fname: "main.py", sourceCode: templates.Python, description: "\t\t- Python 3 source code", executable: true},
+	"flask": {fname: "app.py", sourceCode: templates.Flask, description: "\t\t- Flask source code", executable: true},
+	"rust":  {fname: "main.rs", sourceCode: templates.Rust, description: "\t\t- Rust source code"},
+	"nuon":  {fname: "on", sourceCode: "", description: "\t\t- create `on` for activating a virt. env. from Nushell"},
 }
 
 // help about the usage of the program
@@ -44,7 +46,7 @@ func printHelp() {
 
 	for _, key := range keys {
 		entry := langMap[key]
-		fmt.Printf("* %v%v\n", key, entry.description)
+		fmt.Printf("* %v%v [%v]\n", key, entry.description, entry.fname)
 	}
 }
 
@@ -80,11 +82,15 @@ func main() {
 	source := strings.TrimSpace(entry.sourceCode)
 	writeOk := false
 	if len(source) > 0 {
-		writeOk = jio.WriteSourceToFile(source, entry.fname)
+		writeOk = lib.WriteSourceToFile(source, entry.fname)
 		if writeOk {
 			fmt.Printf("# `%s` was created\n", entry.fname)
 		}
 	} else {
 		handleSpecialCase(key)
+	}
+
+	if entry.executable {
+		lib.MakeExecutable(entry.fname)
 	}
 }

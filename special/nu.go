@@ -3,26 +3,26 @@ package special
 import (
 	"fmt"
 
-	"github.com/jabbalaci/alap/jio"
+	"github.com/jabbalaci/alap/lib"
 	"github.com/jabbalaci/alap/templates"
 )
 
 func CreateNuOn() {
 	var writeOk bool
 
-	if jio.IsDir(".venv") {
+	if lib.IsDir(".venv") {
 		fmt.Println("# .venv/ is present")
 		content := "source .venv/bin/activate.nu"
-		writeOk = jio.WriteSourceToFile(content, "on")
+		writeOk = lib.WriteSourceToFile(content, "on")
 		if writeOk {
 			fmt.Println("# `on` was created")
 		}
 		// ---
 		var fname string
 		fname = ".venv/bin/activate.nu"
-		if !jio.IsFile(fname) {
+		if !lib.IsFile(fname) {
 			content := templates.ACTIVATE_NU
-			writeOk = jio.WriteSourceToFile(content, fname)
+			writeOk = lib.WriteSourceToFile(content, fname)
 			if writeOk {
 				fmt.Printf("# `%s` was created\n", fname)
 			}
@@ -31,9 +31,9 @@ func CreateNuOn() {
 		}
 		// ---
 		fname = ".venv/bin/deactivate.nu"
-		if !jio.IsFile(fname) {
+		if !lib.IsFile(fname) {
 			content := templates.DEACTIVATE_NU
-			writeOk = jio.WriteSourceToFile(content, fname)
+			writeOk = lib.WriteSourceToFile(content, fname)
 			if writeOk {
 				fmt.Printf("# `%s` was created\n", fname)
 			}
@@ -42,12 +42,12 @@ func CreateNuOn() {
 		}
 	}
 
-	if jio.IsFile("pyproject.toml") {
+	if lib.IsFile("pyproject.toml") {
 		fmt.Println("# pyproject.toml is present, poetry project detected")
 		cmd := "poetry env info -p"
-		output := jio.ExecCmd(cmd)
+		output := lib.ExecCmd(cmd)
 		content := fmt.Sprintf("source %s/bin/activate.nu", output)
-		writeOk = jio.WriteSourceToFile(content, "on")
+		writeOk = lib.WriteSourceToFile(content, "on")
 		if writeOk {
 			fmt.Println("# `on` was created")
 		}
