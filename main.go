@@ -11,7 +11,7 @@ import (
 	"github.com/jabbalaci/alap/templates"
 )
 
-const VERSION = "0.1.4"
+const VERSION = "0.1.5"
 
 type LangInfo struct {
 	fname       string
@@ -34,6 +34,8 @@ var langMap = map[string]LangInfo{
 
 // help about the usage of the program
 func printHelp() {
+	fmt.Printf("alap v%v, https://github.com/jabbalaci/alap\n", VERSION)
+	fmt.Println()
 	fmt.Println("Usage: alap <template_id>")
 	fmt.Println()
 	fmt.Println("Available templates:")
