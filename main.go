@@ -13,6 +13,8 @@ import (
 
 const VERSION = "0.1.5"
 
+const SPECIAL_CASE = "--"
+
 type LangInfo struct {
 	fname       string
 	sourceCode  string
@@ -29,7 +31,15 @@ var langMap = map[string]LangInfo{
 	"py":    {fname: "main.py", sourceCode: templates.Python, description: "\t\t- Python 3 source code", executable: true},
 	"flask": {fname: "app.py", sourceCode: templates.Flask, description: "\t\t- Flask source code", executable: true},
 	"rust":  {fname: "main.rs", sourceCode: templates.Rust, description: "\t\t- Rust source code"},
-	"nuon":  {fname: "on", sourceCode: "", description: "\t\t- create `on` for activating a virt. env. from Nushell"},
+	//
+	"nuon": {fname: "on", sourceCode: SPECIAL_CASE, description: "\t\t- create `on` for activating a virt. env. from Nushell"},
+}
+
+func verify(d map[string]LangInfo) {
+	for k, entry := range d {
+		msg := fmt.Sprintf("the source code for '%s' cannot be empty", k)
+		lib.Assert(len(entry.sourceCode) > 0, msg)
+	}
 }
 
 // help about the usage of the program
@@ -60,6 +70,8 @@ func handleSpecialCase(fname string) {
 
 // entry point
 func main() {
+	verify(langMap)
+
 	args := os.Args[1:]
 	if len(args) == 0 {
 		printHelp()
@@ -82,14 +94,13 @@ func main() {
 	}
 	// else
 	source := strings.TrimSpace(entry.sourceCode)
-	writeOk := false
-	if len(source) > 0 {
-		writeOk = lib.WriteSourceToFile(source, entry.fname)
+	if source == SPECIAL_CASE {
+		handleSpecialCase(key)
+	} else {
+		writeOk := lib.WriteSourceToFile(source, entry.fname)
 		if writeOk {
 			fmt.Printf("# `%s` was created\n", entry.fname)
 		}
-	} else {
-		handleSpecialCase(key)
 	}
 
 	if entry.executable {

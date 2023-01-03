@@ -8,6 +8,9 @@ run:
 build:
 	go build .
 
+small:
+	go build -ldflags="-s -w" .
+
 fmt:
 	go fmt ./...
 
