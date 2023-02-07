@@ -29,6 +29,7 @@ var langMap = map[string]LangInfo{
 	"java":  {fname: "Main.java", sourceCode: templates.Java, description: "\t\t- Java source code"},
 	"cs":    {fname: "Program.cs", sourceCode: templates.CSharp, description: "\t\t- C# source code"},
 	"py":    {fname: "main.py", sourceCode: templates.Python, description: "\t\t- Python 3 source code", executable: true},
+	"sh":    {fname: "main.sh", sourceCode: templates.Bash, description: "\t\t- Bash source code", executable: true},
 	"flask": {fname: "app.py", sourceCode: templates.Flask, description: "\t\t- Flask source code", executable: true},
 	"rust":  {fname: "main.rs", sourceCode: templates.Rust, description: "\t\t- Rust source code"},
 	//
