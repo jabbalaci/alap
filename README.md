@@ -18,18 +18,29 @@ somewhere in the PATH.
 # Usage
 
         $ alap -h
-        Usage: alap <template_id>
+        alap v0.1.6, https://github.com/jabbalaci/alap
+
+        Usage: alap <template_id> [option]
+
+        Available options:
+
+        -h, --help        show this help
+        -v, --version     version info
+        --stdout          don't create source file, print result to stdout
 
         Available templates:
 
-        * c             - C source code
-        * go            - Go source code
-        * java          - Java source code
-        * nuon          - create `on` for activating a virt. env. from Nushell
-        * py            - Python 3 source code
-        * rust          - Rust source code
+        * c             - C source code [main.c]
+        * cs            - C# source code [Program.cs]
+        * flask         - Flask source code [app.py]
+        * go            - Go source code [main.go]
+        * java          - Java source code [Main.java]
+        * nuon          - create `on` for activating a virt. env. from Nushell [on]
+        * py            - Python 3 source code [main.py]
+        * rust          - Rust source code [main.rs]
+        * sh            - Bash source code [main.sh]
 
-# Example
+# Examples
 
         $ ls -al
         drwxr-xr-x   2 jabba jabba   40 okt    3 13.14 .
@@ -53,6 +64,12 @@ somewhere in the PATH.
         func main() {
                 fmt.Println("go")
         }
+
+        $ alap rust --stdout
+        fn main() {
+            println!("rust");
+        }
+
 
 # Installation
 

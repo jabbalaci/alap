@@ -11,7 +11,7 @@ import (
 	"github.com/jabbalaci/alap/templates"
 )
 
-const VERSION = "0.1.5"
+const VERSION = "0.1.6"
 
 const SPECIAL_CASE = "--"
 
@@ -47,7 +47,13 @@ func verify(d map[string]LangInfo) {
 func printHelp() {
 	fmt.Printf("alap v%v, https://github.com/jabbalaci/alap\n", VERSION)
 	fmt.Println()
-	fmt.Println("Usage: alap <template_id>")
+	fmt.Println("Usage: alap <template_id> [option]")
+	fmt.Println()
+	fmt.Println("Available options:")
+	fmt.Println()
+	fmt.Println("-h, --help        show this help")
+	fmt.Println("-v, --version     version info")
+	fmt.Println("--stdout          don't create source file, print result to stdout")
 	fmt.Println()
 	fmt.Println("Available templates:")
 	fmt.Println()
@@ -74,37 +80,57 @@ func main() {
 	verify(langMap)
 
 	args := os.Args[1:]
+
+	if lib.Contains(args, "-h") || lib.Contains(args, "--help") {
+		printHelp()
+		os.Exit(0)
+	}
+	if lib.Contains(args, "-v") || lib.Contains(args, "--version") {
+		fmt.Printf("alap v%s\n", VERSION)
+		os.Exit(0)
+	}
+
+	to_stdout := false
+	if lib.Contains(args, "--stdout") {
+		to_stdout = true
+		args, _ = lib.Remove(args, "--stdout")
+	}
 	if len(args) == 0 {
 		printHelp()
 		os.Exit(0)
 	}
-	// else
+
 	key := args[0]
-	if key == "-h" || key == "--help" {
-		printHelp()
-		os.Exit(0)
-	}
-	if key == "-v" || key == "--version" {
-		fmt.Printf("alap v%s\n", VERSION)
-		os.Exit(0)
-	}
 	entry, exists := langMap[key]
 	if !exists {
-		fmt.Printf("Error: the language '%s' was not found\n", key)
+		fmt.Printf("Error: the language/option '%s' is unknown\n", key)
 		os.Exit(1)
 	}
 	// else
 	source := strings.TrimSpace(entry.sourceCode)
-	if source == SPECIAL_CASE {
-		handleSpecialCase(key)
-	} else {
-		writeOk := lib.WriteSourceToFile(source, entry.fname)
-		if writeOk {
-			fmt.Printf("# `%s` was created\n", entry.fname)
+
+	// if writing to file:
+	if !to_stdout {
+		if source == SPECIAL_CASE {
+			handleSpecialCase(key)
+		} else {
+			writeOk := lib.WriteSourceToFile(source, entry.fname)
+			if writeOk {
+				fmt.Printf("# `%s` was created\n", entry.fname)
+			}
+		}
+
+		if entry.executable {
+			lib.MakeExecutable(entry.fname)
 		}
 	}
 
-	if entry.executable {
-		lib.MakeExecutable(entry.fname)
+	if to_stdout {
+		if source == SPECIAL_CASE {
+			fmt.Printf("Error: this is a special case; printing to stdout is not supported\n")
+			os.Exit(1)
+		} else {
+			fmt.Println(source)
+		}
 	}
 }
