@@ -11,7 +11,7 @@ import (
 	"github.com/jabbalaci/alap/templates"
 )
 
-const VERSION = "0.1.6"
+const VERSION = "0.1.7"
 
 const SPECIAL_CASE = "--"
 
