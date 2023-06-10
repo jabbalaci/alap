@@ -11,7 +11,7 @@ import (
 	"github.com/jabbalaci/alap/templates"
 )
 
-const VERSION = "0.1.7"
+const VERSION = "0.1.9"
 
 const SPECIAL_CASE = "--"
 
@@ -33,7 +33,7 @@ var langMap = map[string]LangInfo{
 	"flask": {fname: "app.py", sourceCode: templates.Flask, description: "\t\t- Flask source code", executable: true},
 	"rust":  {fname: "main.rs", sourceCode: templates.Rust, description: "\t\t- Rust source code"},
 	//
-	"nuon": {fname: "on", sourceCode: SPECIAL_CASE, description: "\t\t- create `on` for activating a virt. env. from Nushell"},
+	"nuon": {fname: "on", sourceCode: SPECIAL_CASE, description: "\t\t- prepare a virt. env. for Nushell", executable: true},
 }
 
 func verify(d map[string]LangInfo) {

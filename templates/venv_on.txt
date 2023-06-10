@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+TEXT="overlay use {{ path_of_activate.nu }}"
+BACKUP=`xsel -bo` # save current content
+echo -n "$TEXT" | xsel -b # set new content
+xdotool key Shift+Insert # insert new content
+echo -n "$BACKUP" | xsel -b # restore original content

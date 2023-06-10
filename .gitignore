@@ -15,5 +15,6 @@
 # vendor/
 
 # own
+.vscode/
 alap
 backup/
