@@ -1,0 +1,7 @@
+#!/usr/bin/env lua
+
+function main()
+    print("Lua")
+end
+
+main()

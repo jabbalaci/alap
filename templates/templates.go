@@ -17,6 +17,9 @@ var CSharp string
 //go:embed main.py.txt
 var Python string
 
+//go:embed main.lua.txt
+var Lua string
+
 //go:embed main.sh.txt
 var Bash string
 
@@ -25,3 +28,6 @@ var Flask string
 
 //go:embed main.rs.txt
 var Rust string
+
+//go:embed mypy.ini.txt
+var Mypy string

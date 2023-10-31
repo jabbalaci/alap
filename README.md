@@ -17,28 +17,31 @@ somewhere in the PATH.
 
 # Usage
 
-        $ alap -h
-        alap v0.1.6, https://github.com/jabbalaci/alap
+```
+$ alap -h
+alap v0.2.0, https://github.com/jabbalaci/alap
 
-        Usage: alap <template_id> [option]
+Usage: alap <template_id> [option]
 
-        Available options:
+Available options:
 
-        -h, --help        show this help
-        -v, --version     version info
-        --stdout          don't create source file, print result to stdout
+-h, --help        show this help
+-v, --version     version info
+--stdout          don't create source file, print result to stdout
 
-        Available templates:
+Available templates:
 
-        * c             - C source code [main.c]
-        * cs            - C# source code [Program.cs]
-        * flask         - Flask source code [app.py]
-        * go            - Go source code [main.go]
-        * java          - Java source code [Main.java]
-        * nuon          - create `on` for activating a virt. env. from Nushell [on]
-        * py            - Python 3 source code [main.py]
-        * rust          - Rust source code [main.rs]
-        * sh            - Bash source code [main.sh]
+* c             - C source code [main.c]
+* cs            - C# source code [Program.cs]
+* flask         - Flask source code [app.py]
+* go            - Go source code [main.go]
+* java          - Java source code [Main.java]
+* lua           - Lua source code [main.lua]
+* mypy          - mypy ini file [mypy.ini]
+* py            - Python 3 source code [main.py]
+* rust          - Rust source code [main.rs]
+* sh            - Bash source code [main.sh]
+```
 
 # Examples
 
