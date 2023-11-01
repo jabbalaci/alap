@@ -31,3 +31,6 @@ var Rust string
 
 //go:embed mypy.ini.txt
 var Mypy string
+
+//go:embed mongo.py.txt
+var Pymongo string

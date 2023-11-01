@@ -11,7 +11,7 @@ import (
 	"github.com/jabbalaci/alap/templates"
 )
 
-const VERSION = "0.2.0"
+const VERSION = "0.2.1"
 
 const SPECIAL_CASE = "--"
 
@@ -24,16 +24,17 @@ type LangInfo struct {
 
 // template IDs and their associated structs
 var langMap = map[string]LangInfo{
-	"c":     {fname: "main.c", sourceCode: templates.C, description: "\t\t- C source code"},
-	"go":    {fname: "main.go", sourceCode: templates.Go, description: "\t\t- Go source code"},
-	"java":  {fname: "Main.java", sourceCode: templates.Java, description: "\t\t- Java source code"},
-	"cs":    {fname: "Program.cs", sourceCode: templates.CSharp, description: "\t\t- C# source code"},
-	"py":    {fname: "main.py", sourceCode: templates.Python, description: "\t\t- Python 3 source code", executable: true},
-	"lua":   {fname: "main.lua", sourceCode: templates.Lua, description: "\t\t- Lua source code", executable: true},
-	"sh":    {fname: "main.sh", sourceCode: templates.Bash, description: "\t\t- Bash source code", executable: true},
-	"flask": {fname: "app.py", sourceCode: templates.Flask, description: "\t\t- Flask source code", executable: true},
-	"rust":  {fname: "main.rs", sourceCode: templates.Rust, description: "\t\t- Rust source code"},
-	"mypy":  {fname: "mypy.ini", sourceCode: templates.Mypy, description: "\t\t- mypy ini file"},
+	"c":       {fname: "main.c", sourceCode: templates.C, description: "\t\t- C source code"},
+	"cs":      {fname: "Program.cs", sourceCode: templates.CSharp, description: "\t\t- C# source code"},
+	"flask":   {fname: "app.py", sourceCode: templates.Flask, description: "\t\t- Flask source code", executable: true},
+	"go":      {fname: "main.go", sourceCode: templates.Go, description: "\t\t- Go source code"},
+	"java":    {fname: "Main.java", sourceCode: templates.Java, description: "\t\t- Java source code"},
+	"lua":     {fname: "main.lua", sourceCode: templates.Lua, description: "\t\t- Lua source code", executable: true},
+	"mypy":    {fname: "mypy.ini", sourceCode: templates.Mypy, description: "\t\t- mypy ini file"},
+	"py":      {fname: "main.py", sourceCode: templates.Python, description: "\t\t- Python 3 source code", executable: true},
+	"pymongo": {fname: "mongo.py", sourceCode: templates.Pymongo, description: "\t- MongoDB example (Python 3 + pymongo)", executable: true},
+	"rust":    {fname: "main.rs", sourceCode: templates.Rust, description: "\t\t- Rust source code"},
+	"sh":      {fname: "main.sh", sourceCode: templates.Bash, description: "\t\t- Bash source code", executable: true},
 	//
 	// "nuon": {fname: "on", sourceCode: SPECIAL_CASE, description: "\t\t- prepare a virt. env. for Nushell", executable: true},
 }
