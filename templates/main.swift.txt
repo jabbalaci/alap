@@ -1,0 +1,7 @@
+import Foundation
+
+func main() {
+    print("swift")
+}
+
+main()
