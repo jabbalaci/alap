@@ -1,0 +1,12 @@
+cat:
+    cat Makefile
+
+c:
+    gcc main.c
+
+r:
+    ./a.out
+
+all:
+    gcc main.c
+    ./a.out

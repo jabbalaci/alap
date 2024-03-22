@@ -11,7 +11,7 @@ import (
 	"github.com/jabbalaci/alap/templates"
 )
 
-const VERSION = "0.2.3"
+const VERSION = "0.2.4"
 
 const SPECIAL_CASE = "--"
 
@@ -36,7 +36,7 @@ var langMap = map[string]LangInfo{
 	"pymongo": {fname: "mongo.py", sourceCode: templates.Pymongo, description: "\t- MongoDB example (Python 3 + pymongo)", executable: true},
 	"rust":    {fname: "main.rs", sourceCode: templates.Rust, description: "\t\t- Rust source code"},
 	"sh":      {fname: "main.sh", sourceCode: templates.Bash, description: "\t\t- Bash source code", executable: true},
-	"swift":   {fname: "main.swift", sourceCode: templates.Swift, description: "\t\t- Swift source code"},
+	// "swift":   {fname: "main.swift", sourceCode: templates.Swift, description: "\t\t- Swift source code"},
 	//
 	// "nuon": {fname: "on", sourceCode: SPECIAL_CASE, description: "\t\t- prepare a virt. env. for Nushell", executable: true},
 }
@@ -46,6 +46,11 @@ func verify(d map[string]LangInfo) {
 		msg := fmt.Sprintf("the source code for '%s' cannot be empty", k)
 		lib.Assert(len(entry.sourceCode) > 0, msg)
 	}
+}
+
+func printMake() {
+	fmt.Println("* ---")
+	fmt.Println("* make\t\t- create [Makefile] interactively")
 }
 
 // help about the usage of the program
@@ -72,6 +77,7 @@ func printHelp() {
 		entry := langMap[key]
 		fmt.Printf("* %v%v [%v]\n", key, entry.description, entry.fname)
 	}
+	printMake()
 }
 
 func handleSpecialCase(fname string) {
@@ -106,6 +112,12 @@ func main() {
 	}
 
 	key := args[0]
+
+	if key == "make" {
+		special.CreateMakefile(to_stdout)
+		return
+	}
+	// else
 	entry, exists := langMap[key]
 	if !exists {
 		fmt.Printf("Error: the language/option '%s' is unknown\n", key)
