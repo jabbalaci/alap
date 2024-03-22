@@ -1,5 +1,5 @@
 ; Usage:
-; mypy --config-file mypy.ini *.py
+; mypy --config-file mypy.ini **/*.py
 
 [mypy]
 ignore_missing_imports = True
