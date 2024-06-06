@@ -11,6 +11,9 @@ var C string
 //go:embed Program.cs.txt
 var CSharp string
 
+//go:embed main.d.txt
+var D string
+
 //go:embed app.py.txt
 var Flask string
 

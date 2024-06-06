@@ -1,5 +1,6 @@
 cat:
 	cat Makefile
+
 .PHONY: cat
 
 run:

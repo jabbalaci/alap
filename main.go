@@ -11,7 +11,7 @@ import (
 	"github.com/jabbalaci/alap/templates"
 )
 
-const VERSION = "0.2.4"
+const VERSION = "0.2.5"
 
 const SPECIAL_CASE = "--"
 
@@ -26,6 +26,7 @@ type LangInfo struct {
 var langMap = map[string]LangInfo{
 	"c":       {fname: "main.c", sourceCode: templates.C, description: "\t\t- C source code"},
 	"cs":      {fname: "Program.cs", sourceCode: templates.CSharp, description: "\t\t- C# source code"},
+	"d":       {fname: "main.d", sourceCode: templates.D, description: "\t\t- D source code", executable: true},
 	"flask":   {fname: "app.py", sourceCode: templates.Flask, description: "\t\t- Flask source code", executable: true},
 	"go":      {fname: "main.go", sourceCode: templates.Go, description: "\t\t- Go source code"},
 	"java":    {fname: "Main.java", sourceCode: templates.Java, description: "\t\t- Java source code"},
