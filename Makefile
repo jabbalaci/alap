@@ -28,7 +28,7 @@ strip:
 	strip -s alap
 
 install:
-	go install .
+	go install -buildvcs=false .
 
 clean:
 	rm alap
