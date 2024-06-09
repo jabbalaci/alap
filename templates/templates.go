@@ -44,13 +44,16 @@ var Rust string
 //go:embed main.swift.txt
 var Swift string
 
-// --- Makfiles ---
+// --- Makefiles ---
 
 //go:embed makefile.general.txt
 var MakefileGeneral string
 
 //go:embed makefile.c.txt
 var MakefileC string
+
+//go:embed makefile.d.txt
+var MakefileD string
 
 //go:embed makefile.python.txt
 var MakefilePython string

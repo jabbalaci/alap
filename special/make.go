@@ -22,7 +22,8 @@ const makefile = "Makefile"
 var langMap = map[string]MakeInfo{
 	"0": {_id: "general", description: " - general", sourceCode: templates.MakefileGeneral},
 	"1": {_id: "c", description: " - C", sourceCode: templates.MakefileC},
-	"2": {_id: "py", description: " - Python", sourceCode: templates.MakefilePython},
+	"2": {_id: "d", description: " - D", sourceCode: templates.MakefileD},
+	"3": {_id: "py", description: " - Python", sourceCode: templates.MakefilePython},
 }
 
 func printList() {

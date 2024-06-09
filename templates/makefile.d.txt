@@ -1,0 +1,11 @@
+cat:
+	cat Makefile
+
+c:
+	dmd -de -w main.d
+
+cr:
+	dmd -de -w -run main.d
+
+r:
+	./main
