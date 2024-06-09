@@ -1,11 +1,16 @@
+fname := main
+
 cat:
 	cat Makefile
 
 c:
-	dmd -de -w main.d
+	dmd -de -w ${fname}.d
 
 cr:
-	dmd -de -w -run main.d
+	dmd -de -w -run ${fname}.d
 
 r:
-	./main
+	./${fname}
+
+clean:
+	rm ${fname}
