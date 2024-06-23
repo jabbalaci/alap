@@ -12,5 +12,8 @@ cr:
 r:
 	./${fname}
 
+test:
+	dmd -unittest -w -checkaction=context -run ${fname}.d
+
 clean:
 	rm ${fname}
