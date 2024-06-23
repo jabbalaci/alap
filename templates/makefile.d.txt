@@ -12,6 +12,9 @@ cr:
 r:
 	./${fname}
 
+release:
+	dmd -release -O ${fname}.d
+
 test:
 	dmd -unittest -w -checkaction=context -run ${fname}.d
 
