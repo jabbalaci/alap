@@ -18,5 +18,9 @@ release:
 test:
 	dmd -unittest -w -checkaction=context -run ${fname}.d
 
+cov:
+	dmd -cov -unittest -w -checkaction=context -run ${fname}.d
+	micro ${fname}.lst
+
 clean:
 	rm ${fname}
