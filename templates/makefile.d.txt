@@ -22,5 +22,9 @@ cov:
 	dmd -cov -unittest -w -checkaction=context -run ${fname}.d
 	micro ${fname}.lst
 
+profile:
+	dmd -profile -g -run ${fname}.d
+	echo "see trace.log"
+
 clean:
 	rm ${fname}
