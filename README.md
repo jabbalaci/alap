@@ -82,6 +82,6 @@ Download the source code and issue the following command:
 
 Or, you can install it directly:
 
-        $ go install github.com/jabbalaci/alap@latest
+        $ go install github.com/jabbalaci/alap@HEAD
 
 In this latter case, the binary file `alap` will be in the folder `$GOPATH/bin` .
