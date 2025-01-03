@@ -1,0 +1,18 @@
+{$mode objfpc}{$H+}{$J-}
+
+program Main;
+
+uses
+  sysutils;
+
+procedure Main();
+begin
+
+end;
+
+//---------------------------------------------------------------------------
+
+begin
+  WriteLn('---');
+  Main();
+end.
