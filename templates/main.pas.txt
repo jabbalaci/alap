@@ -6,6 +6,8 @@ uses
   sysutils;
 
 procedure Main();
+var
+  i: Integer;
 begin
 
 end;

@@ -32,6 +32,9 @@ var Lua string
 //go:embed mypy.ini.txt
 var Mypy string
 
+//go:embed main.nim.txt
+var Nim string
+
 //go:embed main.pas.txt
 var Pascal string
 

@@ -1,0 +1,19 @@
+import strutils    # strip, split, join
+import strformat   # &"Hello {name}!"
+import sequtils    # toSeq(iter), map, filter
+# import math        # sum
+# import algorithm   # sorted(seq), reversed(seq)
+# import tables
+# import sets
+
+# import pykot
+# import pykot/[console, converters, euler, fs, functional,
+#               pretty, process, jrandom, strings, jsystem, types, web]
+
+proc main() =
+  echo "hello"
+
+# ############################################################################
+
+when isMainModule:
+  main()
