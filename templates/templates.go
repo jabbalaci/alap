@@ -14,6 +14,9 @@ var CSharp string
 //go:embed main.d.txt
 var D string
 
+//go:embed dub.json.txt
+var DubJson string
+
 //go:embed app.py.txt
 var Flask string
 

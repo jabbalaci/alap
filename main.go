@@ -11,7 +11,7 @@ import (
 	"github.com/jabbalaci/alap/templates"
 )
 
-const VERSION = "0.2.7"
+const VERSION = "0.2.8"
 
 const SPECIAL_CASE = "--"
 
@@ -27,6 +27,7 @@ var langMap = map[string]LangInfo{
 	"c":       {fname: "main.c", sourceCode: templates.C, description: "\t\t- C source code"},
 	"cs":      {fname: "Program.cs", sourceCode: templates.CSharp, description: "\t\t- C# source code"},
 	"d":       {fname: "main.d", sourceCode: templates.D, description: "\t\t- D source code", executable: true},
+	"dub":     {fname: "dub.json", sourceCode: templates.DubJson, description: "\t\t- dub.json for D source code", executable: true},
 	"flask":   {fname: "app.py", sourceCode: templates.Flask, description: "\t\t- Flask source code", executable: true},
 	"go":      {fname: "main.go", sourceCode: templates.Go, description: "\t\t- Go source code"},
 	"java":    {fname: "Main.java", sourceCode: templates.Java, description: "\t\t- Java source code"},
@@ -89,6 +90,41 @@ func handleSpecialCase(fname string) {
 	}
 }
 
+func process(key string, to_stdout bool) {
+	entry, exists := langMap[key]
+	if !exists {
+		fmt.Printf("Error: the language/option '%s' is unknown\n", key)
+		os.Exit(1)
+	}
+	// else
+	source := strings.TrimSpace(entry.sourceCode)
+
+	// if writing to file:
+	if !to_stdout {
+		if source == SPECIAL_CASE {
+			handleSpecialCase(key)
+		} else {
+			writeOk := lib.WriteSourceToFile(source, entry.fname)
+			if writeOk {
+				fmt.Printf("# `%s` was created\n", entry.fname)
+			}
+		}
+
+		if entry.executable {
+			lib.MakeExecutable(entry.fname)
+		}
+	}
+
+	if to_stdout {
+		if source == SPECIAL_CASE {
+			fmt.Printf("Error: this is a special case; printing to stdout is not supported\n")
+			os.Exit(1)
+		} else {
+			fmt.Println(source)
+		}
+	}
+}
+
 // entry point
 func main() {
 	verify(langMap)
@@ -121,36 +157,9 @@ func main() {
 		return
 	}
 	// else
-	entry, exists := langMap[key]
-	if !exists {
-		fmt.Printf("Error: the language/option '%s' is unknown\n", key)
-		os.Exit(1)
-	}
-	// else
-	source := strings.TrimSpace(entry.sourceCode)
-
-	// if writing to file:
-	if !to_stdout {
-		if source == SPECIAL_CASE {
-			handleSpecialCase(key)
-		} else {
-			writeOk := lib.WriteSourceToFile(source, entry.fname)
-			if writeOk {
-				fmt.Printf("# `%s` was created\n", entry.fname)
-			}
-		}
-
-		if entry.executable {
-			lib.MakeExecutable(entry.fname)
-		}
-	}
-
-	if to_stdout {
-		if source == SPECIAL_CASE {
-			fmt.Printf("Error: this is a special case; printing to stdout is not supported\n")
-			os.Exit(1)
-		} else {
-			fmt.Println(source)
-		}
+	process(key, to_stdout)
+	if key == "d" {
+		// for a .d file, we also create a simple dub.json file
+		process("dub", to_stdout)
 	}
 }
