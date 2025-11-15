@@ -19,11 +19,8 @@ somewhere in the PATH.
 
 ```
 $ alap -h
-alap v0.2.0, https://github.com/jabbalaci/alap
-
-Usage: alap <template_id> [option]
-
-Available options:
+alap v0.2.9, https://github.com/jabbalaci/alap
+Usage: alap <template_id> [option] [file_name]
 
 -h, --help        show this help
 -v, --version     version info
@@ -33,14 +30,24 @@ Available templates:
 
 * c             - C source code [main.c]
 * cs            - C# source code [Program.cs]
+* d             - D source code [main.d]
+* dub           - dub.json for D source code [dub.json]
 * flask         - Flask source code [app.py]
 * go            - Go source code [main.go]
 * java          - Java source code [Main.java]
+* kt            - Kotlin source code [main.kt]
+* lorem         - lorem ipsum text [lorem.txt]
 * lua           - Lua source code [main.lua]
 * mypy          - mypy ini file [mypy.ini]
+* nim           - Nim source code [main.nim]
+* pas           - Pascal source code [main.pas]
 * py            - Python 3 source code [main.py]
+* pymongo       - MongoDB example (Python 3 + pymongo) [mongo.py]
 * rust          - Rust source code [main.rs]
 * sh            - Bash source code [main.sh]
+* swift         - Swift source code [main.swift]
+* ---
+* make          - create [Makefile] interactively
 ```
 
 # Examples
@@ -72,6 +79,11 @@ Available templates:
         fn main() {
             println!("rust");
         }
+
+        # optionally, you can specify the file's name to be created
+
+        $ alap py hello
+        # `hello.py` was created (instead of the default `main.py`)
 
 
 # Installation
