@@ -26,6 +26,9 @@ var Go string
 //go:embed Main.java.txt
 var Java string
 
+//go:embed main.kt.txt
+var Kotlin string
+
 //go:embed lorem.txt
 var LoremIpsum string
 

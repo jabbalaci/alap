@@ -11,7 +11,7 @@ import (
 	"github.com/jabbalaci/alap/templates"
 )
 
-const VERSION = "0.2.8"
+const VERSION = "0.2.9"
 
 const SPECIAL_CASE = "--"
 
@@ -31,6 +31,7 @@ var langMap = map[string]LangInfo{
 	"flask":   {fname: "app.py", sourceCode: templates.Flask, description: "\t\t- Flask source code", executable: true},
 	"go":      {fname: "main.go", sourceCode: templates.Go, description: "\t\t- Go source code"},
 	"java":    {fname: "Main.java", sourceCode: templates.Java, description: "\t\t- Java source code"},
+	"kt":      {fname: "main.kt", sourceCode: templates.Kotlin, description: "\t\t- Kotlin source code", executable: true},
 	"lorem":   {fname: "lorem.txt", sourceCode: templates.LoremIpsum, description: "\t\t- lorem ipsum text"},
 	"lua":     {fname: "main.lua", sourceCode: templates.Lua, description: "\t\t- Lua source code", executable: true},
 	"mypy":    {fname: "mypy.ini", sourceCode: templates.Mypy, description: "\t\t- mypy ini file"},
@@ -40,7 +41,7 @@ var langMap = map[string]LangInfo{
 	"pymongo": {fname: "mongo.py", sourceCode: templates.Pymongo, description: "\t- MongoDB example (Python 3 + pymongo)", executable: true},
 	"rust":    {fname: "main.rs", sourceCode: templates.Rust, description: "\t\t- Rust source code"},
 	"sh":      {fname: "main.sh", sourceCode: templates.Bash, description: "\t\t- Bash source code", executable: true},
-	// "swift":   {fname: "main.swift", sourceCode: templates.Swift, description: "\t\t- Swift source code"},
+	"swift":   {fname: "main.swift", sourceCode: templates.Swift, description: "\t\t- Swift source code"},
 	//
 	// "nuon": {fname: "on", sourceCode: SPECIAL_CASE, description: "\t\t- prepare a virt. env. for Nushell", executable: true},
 }
@@ -60,10 +61,7 @@ func printMake() {
 // help about the usage of the program
 func printHelp() {
 	fmt.Printf("alap v%v, https://github.com/jabbalaci/alap\n", VERSION)
-	fmt.Println()
-	fmt.Println("Usage: alap <template_id> [option]")
-	fmt.Println()
-	fmt.Println("Available options:")
+	fmt.Println("Usage: alap <template_id> [option] [file_name]")
 	fmt.Println()
 	fmt.Println("-h, --help        show this help")
 	fmt.Println("-v, --version     version info")
@@ -90,28 +88,44 @@ func handleSpecialCase(fname string) {
 	}
 }
 
-func process(key string, to_stdout bool) {
+func process(key string, to_stdout bool, extra string) {
 	entry, exists := langMap[key]
+	fname := entry.fname
+	dont_change := []string{"dub", "mypy"}
+	if !lib.Contains(dont_change, key) {
+		if len(extra) > 0 {
+			fname = extra
+			if lib.GetExtension(fname) == "" {
+				fname = fname + lib.GetExtension(entry.fname)
+			}
+		}
+	}
 	if !exists {
 		fmt.Printf("Error: the language/option '%s' is unknown\n", key)
 		os.Exit(1)
 	}
 	// else
 	source := strings.TrimSpace(entry.sourceCode)
+	switch key {
+	case "dub":
+		source = special.DubReplaceFileNames(source, extra)
+	case "java":
+		source = special.JavaReplaceFileNames(source, extra)
+	}
 
 	// if writing to file:
 	if !to_stdout {
 		if source == SPECIAL_CASE {
 			handleSpecialCase(key)
 		} else {
-			writeOk := lib.WriteSourceToFile(source, entry.fname)
+			writeOk := lib.WriteSourceToFile(source, fname)
 			if writeOk {
-				fmt.Printf("# `%s` was created\n", entry.fname)
+				fmt.Printf("# `%s` was created\n", fname)
 			}
 		}
 
 		if entry.executable {
-			lib.MakeExecutable(entry.fname)
+			lib.MakeExecutable(fname)
 		}
 	}
 
@@ -151,15 +165,20 @@ func main() {
 	}
 
 	key := args[0]
+	extra := ""
+	if len(args) > 1 {
+		extra = args[1]
+	}
+	// fmt.Printf("# extra: %s\n", extra)
 
 	if key == "make" {
 		special.CreateMakefile(to_stdout)
 		return
 	}
 	// else
-	process(key, to_stdout)
+	process(key, to_stdout, extra)
 	if key == "d" {
 		// for a .d file, we also create a simple dub.json file
-		process("dub", to_stdout)
+		process("dub", to_stdout, extra)
 	}
 }

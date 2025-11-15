@@ -4,6 +4,8 @@ package lib
 import (
 	"io/fs"
 	"os"
+	"path/filepath"
+	"strings"
 )
 
 // Returns true if the entry (file, directory, symbolic link, etc.) exists.
@@ -62,4 +64,15 @@ func MakeExecutable(fname string) error {
 		return err
 	}
 	return nil
+}
+
+// Example: "main" -> "", "main.py" -> ".py"
+func GetExtension(name string) string {
+	return filepath.Ext(name)
+}
+
+// Example: "main.py" -> "main"
+func TrimExtension(name string) string {
+	ext := filepath.Ext(name)
+	return strings.TrimSuffix(name, ext)
 }
