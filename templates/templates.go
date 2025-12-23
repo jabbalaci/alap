@@ -20,6 +20,9 @@ var DubJson string
 //go:embed app.py.txt
 var Flask string
 
+//go:embed main.f90.txt
+var Fortran string
+
 //go:embed main.go.txt
 var Go string
 

@@ -11,7 +11,7 @@ import (
 	"github.com/jabbalaci/alap/templates"
 )
 
-const VERSION = "0.2.9"
+const VERSION = "0.3.0"
 
 const SPECIAL_CASE = "--"
 
@@ -28,6 +28,7 @@ var langMap = map[string]LangInfo{
 	"cs":      {fname: "Program.cs", sourceCode: templates.CSharp, description: "\t\t- C# source code"},
 	"d":       {fname: "main.d", sourceCode: templates.D, description: "\t\t- D source code", executable: true},
 	"dub":     {fname: "dub.json", sourceCode: templates.DubJson, description: "\t\t- dub.json for D source code"},
+	"f":       {fname: "main.f90", sourceCode: templates.Fortran, description: "\t\t- Fortran source code"},
 	"flask":   {fname: "app.py", sourceCode: templates.Flask, description: "\t\t- Flask source code", executable: true},
 	"go":      {fname: "main.go", sourceCode: templates.Go, description: "\t\t- Go source code"},
 	"java":    {fname: "Main.java", sourceCode: templates.Java, description: "\t\t- Java source code"},
@@ -111,6 +112,8 @@ func process(key string, to_stdout bool, extra string) {
 		source = special.DubReplaceFileNames(source, extra)
 	case "java":
 		source = special.JavaReplaceFileNames(source, extra)
+	case "f":
+		source = special.FortranReplaceFileNames(source, extra)
 	}
 
 	// if writing to file:
