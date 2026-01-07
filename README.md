@@ -96,4 +96,8 @@ Or, you can install it directly:
 
         $ go install github.com/jabbalaci/alap@HEAD
 
+Or, you can install the latest commit:
+
+        $ go install github.com/jabbalaci/alap@main
+
 In this latter case, the binary file `alap` will be in the folder `$GOPATH/bin` .
