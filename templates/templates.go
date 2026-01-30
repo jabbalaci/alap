@@ -59,6 +59,9 @@ var Rust string
 //go:embed main.swift.txt
 var Swift string
 
+//go:embed main.zig.txt
+var Zig string
+
 // --- Makefiles ---
 
 //go:embed makefile.general.txt

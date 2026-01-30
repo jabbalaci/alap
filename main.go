@@ -43,6 +43,7 @@ var langMap = map[string]LangInfo{
 	"rust":    {fname: "main.rs", sourceCode: templates.Rust, description: "\t\t- Rust source code"},
 	"sh":      {fname: "main.sh", sourceCode: templates.Bash, description: "\t\t- Bash source code", executable: true},
 	"swift":   {fname: "main.swift", sourceCode: templates.Swift, description: "\t\t- Swift source code"},
+	"zig":     {fname: "main.zig", sourceCode: templates.Zig, description: "\t\t- Zig source code"},
 	//
 	// "nuon": {fname: "on", sourceCode: SPECIAL_CASE, description: "\t\t- prepare a virt. env. for Nushell", executable: true},
 }
