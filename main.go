@@ -36,7 +36,7 @@ var langMap = map[string]LangInfo{
 	"lorem":   {fname: "lorem.txt", sourceCode: templates.LoremIpsum, description: "\t\t- lorem ipsum text"},
 	"lua":     {fname: "main.lua", sourceCode: templates.Lua, description: "\t\t- Lua source code", executable: true},
 	"mypy":    {fname: "mypy.ini", sourceCode: templates.Mypy, description: "\t\t- mypy ini file"},
-	"nim":     {fname: "main.nim", sourceCode: templates.Nim, description: "\t\t- Nim source code"},
+	"nim":     {fname: "main.nim", sourceCode: templates.Nim, description: "\t\t- Nim source code", executable: true},
 	"pas":     {fname: "main.pas", sourceCode: templates.Pascal, description: "\t\t- Pascal source code"},
 	"py":      {fname: "main.py", sourceCode: templates.Python, description: "\t\t- Python 3 source code", executable: true},
 	"pymongo": {fname: "mongo.py", sourceCode: templates.Pymongo, description: "\t- MongoDB example (Python 3 + pymongo)", executable: true},
