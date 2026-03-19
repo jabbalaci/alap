@@ -44,6 +44,9 @@ var Mypy string
 //go:embed main.nim.txt
 var Nim string
 
+//go:embed main.nim2.txt
+var Nim2 string
+
 //go:embed main.pas.txt
 var Pascal string
 
