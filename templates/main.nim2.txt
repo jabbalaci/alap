@@ -1,5 +1,6 @@
 #!/usr/bin/env nimbang
 #off:nimbang-args c -d:release
+#nimbang-settings nodebug
 
 import std/strutils    # strip, split, join
 import std/strformat   # &"Hello {name}!"
