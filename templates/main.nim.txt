@@ -1,10 +1,10 @@
-import strutils    # strip, split, join
-import strformat   # &"Hello {name}!"
-import sequtils    # toSeq(iter), map, filter
-# import math        # sum
-# import algorithm   # sorted(seq), reversed(seq)
-# import tables
-# import sets
+import std/strutils    # strip, split, join
+import std/strformat   # &"Hello {name}!"
+import std/sequtils    # toSeq(iter), map, filter
+# import std/math        # sum
+# import std/algorithm   # sorted(seq), reversed(seq)
+# import std/tables
+# import std/sets
 
 # import pykot
 # import pykot/[console, converters, euler, fs, functional,
