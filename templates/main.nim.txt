@@ -1,14 +1,15 @@
 import std/strutils    # strip, split, join
 import std/strformat   # &"Hello {name}!"
 import std/sequtils    # toSeq(iter), map, filter
-# import std/math        # sum
-# import std/algorithm   # sorted(seq), reversed(seq)
-# import std/tables
-# import std/sets
+#import std/sugar       # =>, collect:
+#import std/math        # sum
+#import std/algorithm   # sorted(seq), reversed(seq)
+#import std/tables
+#import std/sets
 
-# import pykot
-# import pykot/[console, converters, euler, fs, functional,
-#               pretty, process, jrandom, strings, jsystem, types, web]
+#import pykot
+#import pykot/[console, converters, euler, fs, functional,
+#              pretty, process, jrandom, strings, jsystem, types, web]
 
 proc main() =
   echo "hello"
